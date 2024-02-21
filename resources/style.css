@@ -78,7 +78,10 @@ body {
     #social ul>li a {
         font-size: 50px;
     }
-
+    #social ul>li a:hover{
+        color: rgb(133, 133, 133);
+        transition: 0.3s ease;
+    }
     #social ul{
         margin-right: 25px;
     }
