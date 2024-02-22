@@ -7,10 +7,11 @@
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: white;
+    height: 100vh
 }
 
 #bgVideo {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -27,7 +28,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.445), rgba(0, 0, 0, 0.801));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.808), rgba(0, 0, 0, 0.575));
     z-index: -1;
 }
 
@@ -37,26 +38,28 @@ body {
     text-align: center;
 }
 
-#heading{
-    margin-top: 10px;
+#heading {
     text-align: center;
+    padding: 15px;
+    transform: skewX(-10deg);
+    mix-blend-mode: screen;
 }
 
 #heading>a {
-    font-style: italic;
     color: black;
 }
 
-#heading>a>h1{
+#heading>a>h1 {
     font-weight: 700;
     font-size: 35px;
-    padding: 10px;
+    padding: 10px 14px;
     display: inline-block;
     background-color: white;
+    border-radius: 3px;
 }
 
-#heading>a{
-    text-decoration: none   ;
+#heading>a {
+    text-decoration: none;
 }
 
 #social ul>li a {
@@ -64,25 +67,117 @@ body {
     font-size: 40px;
 
 }
+
 #social ul>li {
     height: 80px;
     width: 70px;
 }
 
-#social ul{
+#social ul {
     text-align: center;
-    padding-left:0 ;
+    padding-left: 0;
 }
 
+.countdown {
+    border: 2px solid #fff;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    max-width: 50%;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.countdown>p {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+#datetime {
+    border: none;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 5px;
+    max-width: 200px;
+}
+
+#datetime:focus{
+    outline: none;
+}
+
+.countdown button {
+    background-color: yellow;
+    margin-top: 25px;
+}
+
+#para{
+    font-size: 18px;
+    margin: 0px 30px;
+}
+
+.result{
+    border: 1px solid #fff;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    top: -80px;
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+.result>p{
+    margin-top: 100px;
+    font-size: 32px;
+    font-weight: 700;
+    color: yellow;
+}
+
+.result>p span{
+    font-size: 18px;
+    font-weight: normal;
+}
+
+footer {
+    background-color: #0000009d;
+    position: relative;
+    bottom: 0;
+    /* width: 100vw; */
+    padding: 15px;
+}
+
+footer>p{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+footer a{
+    text-decoration: none;
+    color: yellow;
+    font-weight: 500;
+}
+footer a:hover{
+    color: white;
+    transition: 0.3s ease;
+}
+
+@media screen and (max-width:374px) {
+    .result>p{
+        font-size: 25px;
+    }
+}
 @media screen and (min-width:768px) {
     #social ul>li a {
         font-size: 50px;
     }
-    #social ul>li a:hover{
+
+    #social ul>li a:hover {
         color: rgb(133, 133, 133);
         transition: 0.3s ease;
     }
-    #social ul{
+
+    #social ul {
         margin-right: 25px;
     }
 
@@ -100,7 +195,7 @@ body {
     #social ul>li {
         height: 90px;
         width: 90px;
-        margin-top: 8px;
+        margin-top: 15px;
     }
 
     #social {
@@ -110,7 +205,55 @@ body {
     }
 
     #heading>a>h1 {
-        font-size: 50px;
+        font-size: 48px;
         font-weight: 900;
+    }
+
+    #para{
+        margin: 0px 50px;
+    }
+
+    .countdown{
+        max-width: 40%;
+    }
+    .countdown button { 
+        padding: 9px 12px;
+        border: 1px solid yellow;
+        border-radius: 3px;
+        color: yellow;
+        z-index: 1;
+        transform: skewX(-10deg);
+        background: transparent;
+        position: relative;
+        font-weight: 1000;
+        font-size: 17px;
+        transition: all 250ms;
+        overflow: hidden;
+    }
+
+    .countdown button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        border-radius: 3px;
+        background-color: yellow;
+        z-index: -1;
+        transition: all 250ms
+    }
+
+    .countdown button:hover {
+        color: #000;
+    }
+
+    .countdown button:hover::before {
+        width: 100%;
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
     }
 }
