@@ -86,11 +86,14 @@ body {
     padding: 20px;
     text-align: center;
     backdrop-filter: blur(10px);
+    box-shadow: rgba(255, 255, 255, 0.56) 0px 2px 10px 4px;
 }
 
 .countdown>p {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+    color: yellow;
 }
 
 #datetime {
@@ -99,23 +102,35 @@ body {
     border-bottom-right-radius: 20px;
     padding: 5px;
     max-width: 200px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: rgba(255, 255, 255, 0.56) 0px 2px 10px 2px;
 }
 
-#datetime:focus{
+#datetime:focus {
     outline: none;
 }
 
 .countdown button {
     background-color: yellow;
     margin-top: 25px;
+    border: none;
+    border-radius: 3px;
+    color: black;
+    z-index: 1;
+    transform: skewX(-10deg);
+    background: yellow;
+    font-weight: 700;
+    padding: 6px 10px;
+    box-shadow: rgba(255, 251, 0, 0.56) 0px 1px 8px 1px;
 }
 
-#para{
+#para {
     font-size: 18px;
     margin: 0px 30px;
 }
 
-.result{
+.result {
     border: 1px solid #fff;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -125,17 +140,18 @@ body {
     top: -80px;
     backdrop-filter: blur(5px);
     z-index: -1;
+    box-shadow: rgba(255, 255, 255, 0.56) 0px 2px 10px 4px;
 }
 
-.result>p{
+.result>p {
     margin-top: 100px;
     font-size: 32px;
     font-weight: 700;
     color: yellow;
 }
 
-.result>p span{
-    font-size: 18px;
+.result>p span {
+    font-size: 19px;
     font-weight: normal;
 }
 
@@ -143,30 +159,42 @@ footer {
     background-color: #0000009d;
     position: relative;
     bottom: 0;
-    /* width: 100vw; */
     padding: 15px;
 }
 
-footer>p{
+footer>p {
     text-align: center;
     margin-bottom: 5px;
 }
 
-footer a{
+footer a {
     text-decoration: none;
     color: yellow;
     font-weight: 500;
 }
-footer a:hover{
+
+footer a:hover {
     color: white;
     transition: 0.3s ease;
 }
 
 @media screen and (max-width:374px) {
-    .result>p{
-        font-size: 25px;
+    .result>p {
+        font-size: 28px;
     }
 }
+
+@media screen and (max-width:575px) {
+    #datetime {
+        max-width: 190px;
+        font-size: 15px;
+    }
+
+    .countdown {
+        max-width: 80%;
+    }
+}
+
 @media screen and (min-width:768px) {
     #social ul>li a {
         font-size: 50px;
@@ -209,14 +237,24 @@ footer a:hover{
         font-weight: 900;
     }
 
-    #para{
+    #para {
         margin: 0px 50px;
     }
 
-    .countdown{
-        max-width: 40%;
+    #datetime {
+        max-width: 230px;
+        font-size: 18px;
     }
-    .countdown button { 
+
+    .countdown {
+        max-width: 45%;
+    }
+
+    .countdown>p {
+        font-size: 30px;
+    }
+
+    .countdown button {
         padding: 9px 12px;
         border: 1px solid yellow;
         border-radius: 3px;
@@ -226,9 +264,8 @@ footer a:hover{
         background: transparent;
         position: relative;
         font-weight: 1000;
-        font-size: 17px;
+        font-size: 19px;
         transition: all 250ms;
-        overflow: hidden;
     }
 
     .countdown button::before {
@@ -251,6 +288,14 @@ footer a:hover{
     .countdown button:hover::before {
         width: 100%;
     }
+
+    .result>p {
+        font-size: 36px;
+    }
+    .result>p span {
+        font-size: 24px;
+    }
+
     footer {
         position: absolute;
         bottom: 0;
