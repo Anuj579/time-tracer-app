@@ -6,24 +6,27 @@ AOS.init({
 });
 
 // Adjusting footer
-
-const footer = document.getElementsByTagName('footer')[0];
-window.addEventListener('resize', () => {
-  if (window.innerHeight > 840) {
-    footer.style.position = 'absolute';
+function adjustFooterPosition() {
+  const footer = document.getElementsByTagName("footer")[0];
+  if (window.innerHeight > 820) {
+    footer.style.position = "absolute";
   } else {
-    footer.style.position = 'relative';
+    footer.style.position = "relative";
   }
-});
-if (window.innerHeight > 840) {
-  footer.style.position = 'absolute';
-} else {
-  footer.style.position = 'relative';
 }
 
+window.addEventListener("resize", () => {
+  adjustFooterPosition()
+});
+
+adjustFooterPosition();
+
+let countdownInterval;
 function startCountdown() {
+  // Clear the previous countdown interval, if any
+  clearInterval(countdownInterval);
   const errorMessage = document.getElementById("error-message");
-  const resultPara = document.getElementById('time');
+  const resultPara = document.getElementById("time");
   const dateTimeInput = document.getElementById("datetime");
   // converts the user-selected date and time from a string into a Date object
   const selectedDateTime = new Date(dateTimeInput.value);
@@ -53,14 +56,15 @@ function startCountdown() {
     errorMessage.style.visibility = "visible";
     resultPara.innerHTML = "00<span>h</span> 00<span>m</span> 00<span>s</span>";
     resultPara.querySelectorAll("span").forEach((span) => {
-      if(window.innerWidth> 767){
+      if (window.innerWidth > 767) {
         span.style.fontSize = "24px";
-      }else{
+      } else {
         span.style.fontSize = "18px";
       }
     });
   }
 }
+
 
 function displayResult(label, time) {
   // Get the container where the result label will be displayed
@@ -68,23 +72,43 @@ function displayResult(label, time) {
   // Get the container where the result will be displayed
   const timeContainer = document.getElementById("time");
 
-  // Calculate days, hours, minutes, and seconds from the time in milliseconds
-  const days = Math.floor(time / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  // Update the result message every second
+  countdownInterval = setInterval(() => {
+    // Calculate days, hours, minutes, and seconds from the time in milliseconds
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
 
-  // Create a string with the result message
-  const resultMessage = `${days} days, ${hours}<span>h</span> ${minutes}<span>m</span> ${seconds}<span>s</span>`;
-  
-  // Update the inner HTML of the result container with the result message
-  timeContainer.innerHTML = resultMessage;
+    // Format hours, minutes, and seconds with leading zeros if they are single digits
+    const formattedHours = hours < 10 ? "0" + hours : hours;
+    const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+    const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
 
+    //day and days
+    let d;
+    if (days){
+      if(days==1){
+        d = `${days} day,`
+      }else{
+        d= `${days} days,`
+      }
+    }else{
+      d=''
+    }
 
-  // Check if the time is in the past or the future and update the label accordingly
-  if (label === "Since") {
-    timeLabel.textContent = "Time Since Selected Time:";
-  } else {
-    timeLabel.textContent = "Time left until selected time:";
-  }
+    // Create a string with the result message
+    const resultMessage = `${d} ${formattedHours}<span>h</span> ${formattedMinutes}<span>m</span> ${formattedSeconds}<span>s</span>`;
+
+    // Update the inner HTML of the result container with the result message
+    timeContainer.innerHTML = resultMessage;
+
+    if (label === "Since") {
+      timeLabel.textContent = "Time Since Selected Time:";
+      time += 1000;
+    } else {
+      timeLabel.textContent = "Time left until selected time:";
+      time -= 1000;
+    }
+  }, 1000); // Update the result every second
 }
