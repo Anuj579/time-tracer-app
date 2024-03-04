@@ -1,25 +1,3 @@
-const video = document.getElementById("bgVideo");
-video.playbackRate = 0.5; // Set playback speed to half (adjust as needed)
-
-AOS.init({
-  duration: 1200,
-});
-
-// Adjusting footer
-function adjustFooterPosition() {
-  const footer = document.getElementsByTagName("footer")[0];
-  if (window.innerHeight > 820) {
-    footer.style.position = "absolute";
-  } else {
-    footer.style.position = "relative";
-  }
-}
-
-window.addEventListener("resize", () => {
-  adjustFooterPosition()
-});
-
-adjustFooterPosition();
 
 let countdownInterval;
 function startCountdown() {
