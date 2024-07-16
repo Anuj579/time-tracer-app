@@ -24,8 +24,8 @@ Time Tracer is a simple web application that allows users to track time either u
 
 ## Deployment
 
-Time Tracer is deployed using [InfinityFree](https://infinityfree.net/), a free hosting service.
-Live at - https://timetracer.infinityfreeapp.com/
+Time Tracer is deployed using Netlify, a free hosting service.
+Live at - https://timetracer9.netlify.app/
 
 ## Support
 
